@@ -1,0 +1,34 @@
+name: dpdk
+version: '17.11'
+summary: DPDK is a set of libraries and drivers for fast packet processing.
+description: DPDK is a set of libraries and drivers for fast packet processing. 
+grade: devel # must be 'stable' to release into candidate/stable channels
+confinement: devmode # use 'strict' once you have the right plugs and slots
+
+parts:
+  dpdk:
+    plugin: dump
+    override-build: |
+      snapcraftctl build
+      apt build-dep dpdk -y
+      export RTE_TARGET="x86_64-default-linuxapp-gcc"
+      export RTE_SDK=$HOME/parts/dpdk/install/usr/share/dpdk/
+      export RTE_INCLUDE=$HOME/parts/dpdk/install/usr/include/dpdk
+      make -C $HOME/parts/dpdk/install/usr/share/dpdk/examples/l2fwd
+    stage-packages:
+      - dpdk-dev
+      - libdpdk-dev
+      - dpdk-doc
+      - libc6
+      - dpdk
+    build-attributes: [no-patchelf]
+
+
+apps:
+  l2fwd:
+    command: usr/share/dpdk/examples/l2fwd/build/app/l2fwd
+  testpmd:
+    command: usr/bin/testpmd
+  dpdk-init:
+    command: lib/dpdk/dpdk-init start
+    daemon: simple
