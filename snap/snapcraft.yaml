@@ -8,27 +8,36 @@ confinement: devmode # use 'strict' once you have the right plugs and slots
 parts:
   dpdk:
     plugin: dump
-    override-build: |
-      snapcraftctl build
-      apt build-dep dpdk -y
-      export RTE_TARGET="x86_64-default-linuxapp-gcc"
-      export RTE_SDK=$HOME/parts/dpdk/install/usr/share/dpdk/
-      export RTE_INCLUDE=$HOME/parts/dpdk/install/usr/include/dpdk
-      make -C $HOME/parts/dpdk/install/usr/share/dpdk/examples/l2fwd
     stage-packages:
-      - dpdk-dev
-      - libdpdk-dev
-      - dpdk-doc
-      - libc6
       - dpdk
-    build-attributes: [no-patchelf]
+      - libc6
 
-
+#passthrough:
+  #layout:
+   #/usr:
+    #bind: $SNAP/usr
+   #/etc:
+    #bind: $SNAP/etc
+   #/lib:
+    #bind: $SNAP/lib
+   #/sbin:
+    #bind: $SNAP/sbin
+    
 apps:
-  l2fwd:
-    command: usr/share/dpdk/examples/l2fwd/build/app/l2fwd
   testpmd:
     command: usr/bin/testpmd
+  dpdk-pdump:
+    command: usr/bin/dpdk-pdump
+  dpdk-pmdinfo: 
+    command: usr/bin/dpdk-pmdinfo
+  dpdk-procinfo: 
+    command: usr/bin/dpdk-procinfo
+  dpdk-test-crypto-perf:
+    command: usr/bin/dpdk-test-crypto-perf
+  dpdk-test-eventdev: 
+    command: usr/bin/dpdk-test-eventdev
+  dpdk-devbind: 
+    command: sbin/dpdk-devbind
   dpdk-init:
     command: lib/dpdk/dpdk-init start
     daemon: simple
