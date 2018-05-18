@@ -1,7 +1,7 @@
 name: dpdk
 version: '17.11'
-summary: DPDK is a set of libraries and drivers for fast packet processing.  
-description: DPDK is a set of libraries and drivers for fast packet processing. 
+summary: DPDK is a set of libraries and drivers for fast packet processing.
+description: DPDK is a set of libraries and drivers for fast packet processing.
 grade: devel # must be 'stable' to release into candidate/stable channels
 confinement: devmode # use 'strict' once you have the right plugs and slots
 #icon: doc/logo/DPDK_logo_vertical_rev_small.png
@@ -9,13 +9,13 @@ confinement: devmode # use 'strict' once you have the right plugs and slots
 parts:
   dpdk:
     plugin: python
-    python-version: python3
+    python-version: python2
     source: git://dpdk.org/dpdk
     source-type: git
     source-tag: v17.11 # LTS Version, comment out or change tag to what version you require. 
     build-packages:
       - linux-headers-4.15.0-20-generic # Change to the kernel you need
-      - build-essential 
+      - build-essential
       - libnuma-dev
       - pkg-config
       - libelf-dev
@@ -26,17 +26,6 @@ parts:
       make install T=x86_64-native-linuxapp-gcc DESTDIR=$SNAPCRAFT_PART_INSTALL/dpdk
 
 apps:
-  dpdk-pdump:
-    command: dpdk/bin/dpdk-pdump
-  dpdk-pmdinfo:
-    command: dpdk/bin/dpdk-pmdinfo
-  dpdp-procinfo:
-    command: dpdk/bin/dpdk-procinfo
-  dpdk-test-crypto-perf:
-    command: dpdk/bin/dpdk-test-crypto-perf
-  dpdk-test-eventdev:
-    command: dpdk/bin/dpdk-test-eventdev
   testpmd:
     command: dpdk/bin/testpmd
-  dpdk-devbind:
-    command: dpdk/sbin/dpdk-devbind
+    plugs: [network]
