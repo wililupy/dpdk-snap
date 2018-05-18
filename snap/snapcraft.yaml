@@ -1,43 +1,42 @@
 name: dpdk
 version: '17.11'
-summary: DPDK is a set of libraries and drivers for fast packet processing.
+summary: DPDK is a set of libraries and drivers for fast packet processing.  
 description: DPDK is a set of libraries and drivers for fast packet processing. 
 grade: devel # must be 'stable' to release into candidate/stable channels
 confinement: devmode # use 'strict' once you have the right plugs and slots
+#icon: doc/logo/DPDK_logo_vertical_rev_small.png
 
 parts:
   dpdk:
-    plugin: dump
+    plugin: python
+    python-version: python3
+    source: git://dpdk.org/dpdk
+    source-type: git
+    source-tag: v17.11 # LTS Version, comment out or change tag to what version you require. 
+    build-packages:
+      - linux-headers-4.15.0-20-generic # Change to the kernel you need
+      - build-essential 
+      - libnuma-dev
+      - pkg-config
+      - libelf-dev
     stage-packages:
-      - dpdk
       - libc6
+    override-build: |
+      snapcraftctl build
+      make install T=x86_64-native-linuxapp-gcc DESTDIR=$SNAPCRAFT_PART_INSTALL/dpdk
 
-#passthrough:
-  #layout:
-   #/usr:
-    #bind: $SNAP/usr
-   #/etc:
-    #bind: $SNAP/etc
-   #/lib:
-    #bind: $SNAP/lib
-   #/sbin:
-    #bind: $SNAP/sbin
-    
 apps:
-  testpmd:
-    command: usr/bin/testpmd
   dpdk-pdump:
-    command: usr/bin/dpdk-pdump
-  dpdk-pmdinfo: 
-    command: usr/bin/dpdk-pmdinfo
-  dpdk-procinfo: 
-    command: usr/bin/dpdk-procinfo
+    command: dpdk/bin/dpdk-pdump
+  dpdk-pmdinfo:
+    command: dpdk/bin/dpdk-pmdinfo
+  dpdp-procinfo:
+    command: dpdk/bin/dpdk-procinfo
   dpdk-test-crypto-perf:
-    command: usr/bin/dpdk-test-crypto-perf
-  dpdk-test-eventdev: 
-    command: usr/bin/dpdk-test-eventdev
-  dpdk-devbind: 
-    command: sbin/dpdk-devbind
-  dpdk-init:
-    command: lib/dpdk/dpdk-init start
-    daemon: simple
+    command: dpdk/bin/dpdk-test-crypto-perf
+  dpdk-test-eventdev:
+    command: dpdk/bin/dpdk-test-eventdev
+  testpmd:
+    command: dpdk/bin/testpmd
+  dpdk-devbind:
+    command: dpdk/sbin/dpdk-devbind
