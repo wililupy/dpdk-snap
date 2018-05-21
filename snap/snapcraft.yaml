@@ -20,7 +20,7 @@ parts:
       - pkg-config
       - libelf-dev
     stage-packages:
-      - libc6
+      - libc6 # To be removed when Core-18 is released. Not neccissary for Bionic
     override-build: |
       snapcraftctl build
       make install T=x86_64-native-linuxapp-gcc DESTDIR=$SNAPCRAFT_PART_INSTALL/dpdk
