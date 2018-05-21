@@ -13,7 +13,7 @@ snapcraft</code></pre>
 
 Once the snap is installed, you will need to connect two plugs:
 
-<pre><code> sudo snap connect dpdk:network-observe core:network-observe
+<pre><code>sudo snap connect dpdk:network-observe core:network-observe
 sudo snap connect dpdk-hardware-observe core:hardware-observe</code></pre>
 
 Then you can test by doing the following:
