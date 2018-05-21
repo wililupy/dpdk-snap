@@ -28,4 +28,4 @@ parts:
 apps:
   testpmd:
     command: dpdk/bin/testpmd
-    plugs: [network, netowrk-bind, network-control]
+    plugs: [network, netowrk-bind, network-control, hardware-observe]
