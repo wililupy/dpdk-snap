@@ -14,7 +14,7 @@ parts:
     source-type: git
     source-tag: v17.11 # LTS Version, comment out or change tag to what version you require. 
     build-packages:
-      - linux-headers-4.15.0-20-generic # Change to the kernel you need
+      - linux-headers-4.15.0-22-generic # Change to the kernel you need
       - build-essential
       - libnuma-dev
       - pkg-config
