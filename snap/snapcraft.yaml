@@ -34,3 +34,5 @@ apps:
       - network-control
       - network-observe
       - hardware-observe
+      - hugepages-observe
+      - hugepages-control
