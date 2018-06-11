@@ -22,6 +22,14 @@ Then you can test by doing the following:
 mkdir -p /mnt/huge
 mount -t hugetlbfs nodev /mnt/huge
 echo 1024 > /sys/devices/system/node/node0/hugepages/hugepages-2048kB/nr_hugepages
-dpdk.testpmd -- -i</code></pre>
+dpdk-wililupy.testpmd -- -i</code></pre>
 
+You can also install this from the snap store in the edge and beta channels:
+
+<code>sudo snap install dpdk-wililupy --beta --devmode</code>
+
+This will install the LTS version while <code>edge</code> will install the latest DPDK version (18.05-rc0)
+You can upgrade using snap as well:
+
+<code>sudo snap refresh dpdk-wililupy --edge --devmode</code>
 
