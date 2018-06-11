@@ -1,4 +1,4 @@
-name: dpdk
+name: dpdk-wililupy
 version: '17.11'
 summary: DPDK is a set of libraries and drivers for fast packet processing.
 description: DPDK is a set of libraries and drivers for fast packet processing.
@@ -23,7 +23,7 @@ parts:
       - libc6 # To be removed when Core-18 is released. Not neccissary for Bionic
     override-build: |
       snapcraftctl build
-      make install T=x86_64-native-linuxapp-gcc DESTDIR=$SNAPCRAFT_PART_INSTALL/dpdk
+      make install T=x86_64-native-linuxapp-gcc DESTDIR=$SNAPCRAFT_PART_INSTALL/dpdk RTE_KERNELDIR=/usr/src/linux-headers-4.15.0-22-generic # RTE_KERNELDIR is only needed if kernel version is not the same as installed on build host.
 
 apps:
   testpmd:
@@ -34,5 +34,5 @@ apps:
       - network-control
       - network-observe
       - hardware-observe
-    # - hugepages-observe
-    # - hugepages-control
+    # - hugepages-observe # commented out until hugepages interface is in snapd
+    # - hugepages-control # commented out until hugepages interface is in snapd
