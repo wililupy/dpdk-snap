@@ -37,3 +37,5 @@ apps:
       - hardware-observe
     # - hugepages-observe # commented out until hugepages interface is in snapd
     # - hugepages-control # commented out until hugepages interface is in snapd
+      - process-control
+      - system-observe
