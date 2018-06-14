@@ -12,11 +12,13 @@ git clone https://github.com/wililupy/dpdk-snap
 cd dpdk-snap
 snapcraft
 ```
-Once the snap is installed, you will need to connect two plugs:
+Once the snap is installed, you will need to connect four plugs:
 
 ```
-sudo snap connect dpdk:network-observe core:network-observe
-sudo snap connect dpdk:hardware-observe core:hardware-observe
+sudo snap connect dpdk-wililupy:network-observe core:network-observe
+sudo snap connect dpdk-wililupy:hardware-observe core:hardware-observe
+sudo snap connect dpdk-wililupy:process-control core:process-control
+sudo snap connect dpdk-wililupy:system-observe core:system-observe
 ```
 Then you can test by doing the following:
 
