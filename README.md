@@ -33,9 +33,9 @@ You can also install this from the snap store in the edge and beta channels:
 
 `sudo snap install dpdk-wililupy --beta --devmode`
 
-This will install the LTS version while `edge` will install the latest DPDK version (18.05-rc0)
+This will install the LTS version (17.11) while `edge` will install the latest DPDK version (18.11-rc0)
 You can upgrade using snap as well:
 
 `sudo snap refresh dpdk-wililupy --edge --devmode`
 
-### This is only for Ubuntu Bionic Beaver (18.04) with the stock kernel (4.15.0-22-generic). It has not been tested with any other OS
+### This is only for Ubuntu Bionic Beaver (18.04) with the stock kernel (4.15.0-32-generic). It has not been tested with any other OS
