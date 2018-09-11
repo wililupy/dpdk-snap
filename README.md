@@ -38,4 +38,4 @@ You can upgrade using snap as well:
 
 `sudo snap refresh dpdk-wililupy --edge --devmode`
 
-### This is only for Ubuntu Bionic Beaver (18.04) with the stock kernel (4.15.0-32-generic). It has not been tested with any other OS
+### This is only for Ubuntu Bionic Beaver (18.04) with the stock kernel (4.15.0-34-generic). It has not been tested with any other OS
