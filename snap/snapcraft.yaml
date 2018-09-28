@@ -1,5 +1,5 @@
 name: dpdk-wililupy
-version: '17.11'
+version: '18.11-rc0'
 summary: DPDK is a set of libraries and drivers for fast packet processing.
 description: DPDK is a set of libraries and drivers for fast packet processing.
 grade: devel # must be 'stable' to release into candidate/stable channels
@@ -13,7 +13,7 @@ parts:
     python-version: python2
     source: git://dpdk.org/dpdk
     source-type: git
-    source-tag: v17.11 # LTS Version, comment out or change tag to what version you require. 
+    # source-tag: v17.11 # LTS Version, comment out or change tag to what version you require. 
     build-packages:
       - linux-headers-4.15.0-34-generic # Change to the kernel you need
       - build-essential
@@ -35,7 +35,7 @@ apps:
       - network-control
       - network-observe
       - hardware-observe
-    # #- hugepages-observe # commented out until hugepages interface is in snapd
-    # #- hugepages-control # commented out until hugepages interface is in snapd
+      - dpdk-observe # commented out until hugepages interface is in snapd
+      - dpdk-control # commented out until hugepages interface is in snapd
       - process-control
       - system-observe
