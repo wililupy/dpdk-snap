@@ -15,16 +15,16 @@ parts:
     source-type: git
     # source-tag: v17.11 # LTS Version, comment out or change tag to what version you require. 
     build-packages:
-      - linux-headers-4.15.0-34-generic # Change to the kernel you need
+      - linux-headers-4.4.0-140-generic # Change to the kernel you need
       - build-essential
       - libnuma-dev
       - pkg-config
       - libelf-dev
     stage-packages:
-      - libc6 # To be removed when Core-18 is released. Not neccissary for Bionic
+      - libnuma1
     override-build: |
       snapcraftctl build
-      make install T=x86_64-native-linuxapp-gcc DESTDIR=$SNAPCRAFT_PART_INSTALL/dpdk RTE_KERNELDIR=/usr/src/linux-headers-4.15.0-34-generic # RTE_KERNELDIR is only needed if kernel version is not the same as installed on build host.
+      make install T=x86_64-native-linuxapp-gcc DESTDIR=$SNAPCRAFT_PART_INSTALL/dpdk RTE_KERNELDIR=/usr/src/linux-headers-4.4.0-140-generic # RTE_KERNELDIR is only needed if kernel version is not the same as installed on build host.
 
 apps:
   testpmd:
