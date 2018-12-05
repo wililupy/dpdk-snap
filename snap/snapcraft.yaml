@@ -1,5 +1,5 @@
 name: dpdk-wililupy
-version: '18.11-rc0'
+version: '19.02-0-rc0'
 summary: DPDK is a set of libraries and drivers for fast packet processing.
 description: DPDK is a set of libraries and drivers for fast packet processing.
 grade: devel # must be 'stable' to release into candidate/stable channels
@@ -39,3 +39,12 @@ apps:
       - dpdk-control # commented out until hugepages interface is in snapd
       - process-control
       - system-observe
+      
+  dpdk-devbind:
+    command: dpdk/sbin/dpdk-devbind
+    plugs:
+      - network
+      - network-bind
+      - network-control
+      - network-observe
+      
