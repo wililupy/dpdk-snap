@@ -50,3 +50,13 @@ apps:
       - network-observe
       - hardware-observe
       - system-observe
+  
+  dpdk-setup:
+    command: dpdk/share/dpdk/usertools/dpdk-setup.sh
+    plugs:
+      - network
+      - network-bind
+      - network-control
+      - network-observe
+      - hardware-observe
+      - system-observe
