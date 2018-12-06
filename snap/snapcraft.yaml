@@ -22,6 +22,7 @@ parts:
       - libelf-dev
     stage-packages:
       - libnuma1
+      - pciutils
     override-build: |
       snapcraftctl build
       make install T=x86_64-native-linuxapp-gcc DESTDIR=$SNAPCRAFT_PART_INSTALL/dpdk RTE_KERNELDIR=/usr/src/linux-headers-4.4.0-140-generic # RTE_KERNELDIR is only needed if kernel version is not the same as installed on build host.
@@ -47,4 +48,5 @@ apps:
       - network-bind
       - network-control
       - network-observe
-      
+      - hardware-observe
+      - system-observe
