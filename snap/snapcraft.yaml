@@ -35,8 +35,8 @@ apps:
       - network-control
       - network-observe
       - hardware-observe
-      - dpdk-observe # commented out until hugepages interface is in snapd
-      - dpdk-control # commented out until hugepages interface is in snapd
+      - hugepages-observe # commented out until hugepages interface is in snapd
+      - hugepages-control # commented out until hugepages interface is in snapd
       - process-control
       - system-observe
       
