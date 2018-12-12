@@ -36,10 +36,13 @@ apps:
       - network-control
       - network-observe
       - hardware-observe
-      - hugepages-observe # commented out until hugepages interface is in snapd
-      - hugepages-control # commented out until hugepages interface is in snapd
+      - hugepages-observe 
+      - hugepages-control 
       - process-control
       - system-observe
+      - dpdk-control
+      - kernel-module-control
+      - kernel-module-observe
       
   dpdk-devbind:
     command: dpdk/sbin/dpdk-devbind
@@ -50,6 +53,9 @@ apps:
       - network-observe
       - hardware-observe
       - system-observe
+      - dpdk-control
+      - kernel-module-control
+      - kernel-module-observe
   
   dpdk-setup:
     command: dpdk/share/dpdk/usertools/dpdk-setup.sh
@@ -60,3 +66,6 @@ apps:
       - network-observe
       - hardware-observe
       - system-observe
+      - dpdk-control
+      - kernel-module-control
+      - kernel-module-observe
