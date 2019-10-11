@@ -6,6 +6,7 @@ grade: devel # must be 'stable' to release into candidate/stable channels
 confinement: devmode # use 'strict' once you have the right plugs and slots
 icon: DPDK_logo_vertical_rev_small.png
 architectures: [amd64]
+base: core18
 
 parts:
   dpdk:
