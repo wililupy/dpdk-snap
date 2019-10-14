@@ -16,7 +16,7 @@ parts:
     source-type: git
     # source-tag: v17.11 # LTS Version, comment out or change tag to what version you require. 
     build-packages:
-      - linux-headers-4.4.0-140-generic # Change to the kernel you need
+      - linux-headers-generic
       - build-essential
       - libnuma-dev
       - pkg-config
@@ -26,7 +26,22 @@ parts:
       - pciutils
     override-build: |
       snapcraftctl build
-      make install T=x86_64-native-linuxapp-gcc DESTDIR=$SNAPCRAFT_PART_INSTALL/dpdk RTE_KERNELDIR=/usr/src/linux-headers-4.4.0-140-generic # RTE_KERNELDIR is only needed if kernel version is not the same as installed on build host.
+      case "$SNAP_ARCH" in
+      amd64)
+          target=x86_64-native-linuxapp-gcc
+          ;;
+      arm64)
+          target=arm64-armv8a-linuxapp-gcc
+          ;;
+      *)
+          printf "Unsupported architecture, change snapcraft.yaml\n"
+          exit 1
+          ;;
+      esac
+      # RTE_KERNELDIR is only needed if kernel version is not the same as installed on build host
+      make install T="$target" \
+           DESTDIR="$SNAPCRAFT_PART_INSTALL"/dpdk \
+           RTE_KERNELDIR=/usr/src/linux-headers-"$(uname -r)"
 
 apps:
   testpmd:
